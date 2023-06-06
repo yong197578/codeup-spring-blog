@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll-dice result</title>
+</head>
+<body>
+<h1>Roll Dice Result</h1>
+<p>Dice Roll: <span th:text="${randomNum}"></span></p>
+<p>Your Guess: <span th:text="${guess}"></span></p>
+<p>
+  Result:
+  <span th:if="${randomNum == guess}">Congratulations! You guessed correctly!</span>
+  <span th:if="${randomNum != guess}">Oops! Try again!</span>
+</p>
+</body>
+</html>

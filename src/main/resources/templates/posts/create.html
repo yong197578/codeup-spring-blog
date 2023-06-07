@@ -14,7 +14,13 @@
   <input type="text" name="title" id="title">
   <label for="body">Description: </label>
   <input type="text" name="body" id="body">
-  <button type="submit">Save</button>
+    <label>
+        <select name="userId" id="userId">
+            <option th:each=" user : ${user}" th:value="${user.id}" th:text="${user.username}">
+            </option>
+        </select>
+    </label>
+    <button type="submit">Save</button>
 </form>
 <footer th:replace="partials/footer :: footer"></footer>
 

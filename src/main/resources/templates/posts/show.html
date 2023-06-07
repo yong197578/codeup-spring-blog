@@ -11,12 +11,14 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1 th:replace="partials/header :: header"></h1>
-<th:block th:text="${post.title}"></th:block>
-<th:block th:text="${post.body}"></th:block>
-<!--<th:block th:each="posts: ${posts}">-->
-<!--    <li th:text="${posts.title}"></li>-->
-<!--    <li th:text="${posts.body}"></li>-->
-<!--</th:block>-->
+<!--<th:block th:text="${post.title}"></th:block>-->
+<!--<th:block th:text="${post.body}"></th:block>-->
+<!--<th:block th:text="${post.user.email}"></th:block>-->
+<th:block th:each="post : ${post}">
+    <li th:text="${post.title}"></li>
+    <li th:text="${post.body}"></li>
+    <li th:text="${post.user.email}"></li>
+</th:block>
 
 <footer th:replace="partials/footer :: footer"></footer>
 

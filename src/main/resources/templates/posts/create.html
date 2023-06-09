@@ -9,18 +9,20 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<form action="/posts/create" method="post">
-  <label for="title">Title: </label>
-  <input type="text" name="title" id="title">
-  <label for="body">Description: </label>
-  <input type="text" name="body" id="body">
-    <label>
-        <select name="userId" id="userId">
-            <option th:each=" user : ${user}" th:value="${user.id}" th:text="${user.username}">
-            </option>
-        </select>
-    </label>
-    <button type="submit">Save</button>
+<h1 th:if="${post.id == 0}">Create a New Post</h1>
+<h1 th:if="${post.id != 0}">Edit Post</h1>
+
+<form th:method="post" th:action="${post.id == 0} ? @{/posts/create} : @{/posts/{id}/edit (id = ${post.id})}" th:object="${post}">
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" th:field="*{title}">
+    <label for="body">Body: </label>
+    <textarea name="body" id="body" th:field="*{body}"></textarea>
+    <th:block th:each="category : ${categories}">
+        <label th:text="${category.name}"></label>
+        <input type="checkbox" name="category" th:field="*{categories}" th:value="${category.id}">
+    </th:block>
+    <button th:if="${post.id == 0}">Create Post</button>
+    <button th:if="${post.id != 0}">Update</button>
 </form>
 <footer th:replace="partials/footer :: footer"></footer>
 

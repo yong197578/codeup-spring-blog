@@ -20,8 +20,7 @@
         <tbody>
         <th:block th:each="post: ${posts}">
             <tr>
-                <td th:text="${post.title}"></td>
-                <td th:text="${post.body}"></td>
+                <td><a th:href="@{/posts/{id}( id = ${post.id})}" th:text="${post.title}"></a></td>
             </tr>
         </th:block>
         </tbody>

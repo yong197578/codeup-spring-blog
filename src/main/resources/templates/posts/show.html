@@ -9,14 +9,16 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-
-<h1 th:replace="partials/header :: header"></h1>
+<h1>Here is your Posts!</h1>
 <!--<th:block th:text="${post.title}"></th:block>-->
 <!--<th:block th:text="${post.body}"></th:block>-->
 <!--<th:block th:text="${post.user.email}"></th:block>-->
 <th:block th:each="post : ${post}">
+    <h3>Title</h3>
     <li th:text="${post.title}"></li>
+    <p>Description</p>
     <li th:text="${post.body}"></li>
+    <p>User's Email</p>
     <li th:text="${post.user.email}"></li>
 </th:block>
 

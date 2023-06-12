@@ -82,9 +82,23 @@ public class PostController {
 //        Post editPost = postDao.findById(id).get();
 //        editPost.setTitle(post.getTitle());
 //        editPost.setBody(post.getBody());
-        User user = userDao.findById(1L).get();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         newPost.setUser(user);
         postDao.save(newPost);
+        return "redirect:/posts";
+    }
+    @GetMapping("/posts/{id}/delete")
+    public String showDeletePost(@PathVariable Long id, Model model){
+        if(postDao.findById(id).isPresent()){
+            model.addAttribute("post", postDao.findById(id).get());
+        }
+        return "/posts/delete";
+    }
+    @PostMapping("posts/{id}/delete")
+    public String submitDeletePost(@PathVariable Long id, @ModelAttribute Post newPost) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Post postToDelete = postDao.deleteById(id);
+        postDao.deleteById(id);
         return "redirect:/posts";
     }
 }
